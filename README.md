@@ -6,6 +6,7 @@
 [![Packagist](https://img.shields.io/packagist/v/milpa/http.svg)](https://packagist.org/packages/milpa/http)
 [![PHP](https://img.shields.io/badge/php-%E2%89%A5%208.3-777bb4.svg)](https://www.php.net/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Docs](https://img.shields.io/badge/docs-API%20reference-blue.svg)](https://getmilpa.github.io/http/)
 
 `milpa/http` carries the contracts for Milpa's web tier — routing and its integration with
 PSR-15 middleware, and nothing else. It sits one layer above `milpa/core` and speaks the
@@ -100,6 +101,11 @@ route name or a missing parameter is a bug in the caller.
 - [`psr/http-message`](https://packagist.org/packages/psr/http-message) **^2.0**,
   [`psr/http-server-handler`](https://packagist.org/packages/psr/http-server-handler) **^1.0**,
   [`psr/http-server-middleware`](https://packagist.org/packages/psr/http-server-middleware) **^1.0**
+
+## Documentation
+
+**Full API reference: [getmilpa.github.io/http](https://getmilpa.github.io/http/)** — generated
+straight from the source DocBlocks and dressed with the Milpa design system.
 
 ## Contributing
 

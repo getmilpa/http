@@ -53,6 +53,15 @@ $rebrand = [
     'Milpa Core' => 'Milpa HTTP',
     'id="milpa-core"' => 'id="milpa-http"',
     'composer require milpa/core' => 'composer require milpa/http',
+    'https://github.com/getmilpa/core' => 'https://github.com/getmilpa/http',
+    'https://getmilpa.github.io/core/' => 'https://getmilpa.github.io/http/',
+    // Footer credit link: inherit the muted footer color instead of browser-default blue
+    // (fixed at source in core's Shell for >0.2; injected here for the 0.2 vendor).
+    '.docs-footer__credit { margin:0; font-size:var(--text-xs); }'
+    => '.docs-footer__credit { margin:0; font-size:var(--text-xs); }'
+        . '.docs-footer__credit a { color:inherit; text-decoration:underline; text-underline-offset:2px; text-decoration-color:var(--border-strong); }'
+        . '.docs-footer__credit a:hover { color:var(--text); text-decoration-color:currentColor; }',
+
     'The framework-agnostic <strong>contracts core</strong> of Milpa — a modular PHP runtime for '
         . 'applications operable by <strong>both humans and agents</strong>. No ORM, no HTTP client, no kernel: '
         . 'just the primitives every Milpa module builds on.'
