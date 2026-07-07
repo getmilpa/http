@@ -49,7 +49,7 @@ final class WebTierResolvesTest extends TestCase
 
     /**
      * The redesign dropped templating and lifecycle events from the http tier — the old
-     * Medusa-derived contracts must not have leaked back into the package.
+     * Pre-redesign legacy contracts must not have leaked back into the package.
      */
     public function testLegacyTemplatingAndEventContractsAreGone(): void
     {
