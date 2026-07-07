@@ -6,6 +6,7 @@
  * (c) TeamX Agency — https://teamx.agency <hola@teamx.agency>
  *
  * @license Apache-2.0
+ *
  * @link    https://github.com/getmilpa/http
  */
 
@@ -26,8 +27,8 @@ interface UrlGeneratorInterface
     /**
      * Build the URL for a named route.
      *
-     * @param array<string, string|int> $parameters   path-param values (surplus values become query string)
-     * @param UrlReferenceType           $referenceType how the reference is rendered
+     * @param array<string, string|int> $parameters    path-param values (surplus values become query string)
+     * @param UrlReferenceType          $referenceType how the reference is rendered
      *
      * @throws RouteNotFoundException          when no route is registered under $name
      * @throws MissingRouteParametersException when a required path parameter is not supplied

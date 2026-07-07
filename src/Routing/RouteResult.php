@@ -6,6 +6,7 @@
  * (c) TeamX Agency — https://teamx.agency <hola@teamx.agency>
  *
  * @license Apache-2.0
+ *
  * @link    https://github.com/getmilpa/http
  */
 
@@ -29,7 +30,7 @@ final readonly class RouteResult
 
     /**
      * @param array<string, string> $parameters     extracted path params (MATCHED only)
-     * @param list<HttpMethod>       $allowedMethods verbs the path allows (METHOD_NOT_ALLOWED only)
+     * @param list<HttpMethod>      $allowedMethods verbs the path allows (METHOD_NOT_ALLOWED only)
      */
     private function __construct(
         public MatchStatus $status,
