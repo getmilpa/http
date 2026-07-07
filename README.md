@@ -1,3 +1,12 @@
+<p align="center">
+  <a href="https://github.com/getmilpa">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/getmilpa/core/main/art/lockup/milpa-lockup-v-color-dark.svg">
+      <img src="https://raw.githubusercontent.com/getmilpa/core/main/art/lockup/milpa-lockup-v-color-light.svg" alt="Milpa" width="300">
+    </picture>
+  </a>
+</p>
+
 # Milpa HTTP
 
 > **PSR-15-native routing contracts** for the Milpa PHP framework, built on **`milpa/core`**. One immutable `Route` that is both the `#[Route]` attribute and the matched value; a router that turns a PSR-7 request into a typed `RouteResult` (matched / not-found / method-not-allowed) and never throws for a miss; and typed seams onto PSR-15 handlers and middleware.
@@ -115,8 +124,8 @@ issues via [SECURITY.md](SECURITY.md), and note that this project follows a
 
 ## License
 
-[Apache-2.0](LICENSE) © the Milpa authors.
+[Apache-2.0](LICENSE) © TeamX Agency.
 
 ---
 
-Milpa is designed, built, and maintained by **[TeamX Agency](https://teamx.agency)**.
+Milpa is designed, built, and maintained by **[TeamX Agency](https://teamx.agency/?utm_source=github&utm_medium=readme&utm_campaign=milpa&utm_content=http)**.
