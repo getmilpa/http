@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.4](https://github.com/getmilpa/http/compare/v0.1.3...v0.1.4) (2026-07-09)
+
+
+### Features
+
+* ship a concrete Router ([95a796d](https://github.com/getmilpa/http/commit/95a796d4002fae2c6375c506154efe7785955eba))
+
+
+### Miscellaneous Chores
+
+* release 0.1.4 ([f01a20f](https://github.com/getmilpa/http/commit/f01a20f9efd10a395acf5fa3096d5d1090e8a654))
+
 ## [0.1.3](https://github.com/getmilpa/http/compare/v0.1.2...v0.1.3) (2026-07-08)
 
 
