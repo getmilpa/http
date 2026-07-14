@@ -106,7 +106,7 @@ route name or a missing parameter is a bug in the caller.
 ## Requirements
 
 - PHP **≥ 8.3**
-- [`milpa/core`](https://packagist.org/packages/milpa/core) **^0.2**
+- [`milpa/core`](https://packagist.org/packages/milpa/core) **^0.6**
 - [`psr/http-message`](https://packagist.org/packages/psr/http-message) **^2.0**,
   [`psr/http-server-handler`](https://packagist.org/packages/psr/http-server-handler) **^1.0**,
   [`psr/http-server-middleware`](https://packagist.org/packages/psr/http-server-middleware) **^1.0**
