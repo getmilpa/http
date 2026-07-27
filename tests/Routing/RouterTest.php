@@ -145,4 +145,16 @@ final class RouterTest extends TestCase
 
         $this->assertTrue($result->isMatched());
     }
+
+    public function testASegmentThatDiffersIsNoMatchEvenWhenTheShapeLinesUp(): void
+    {
+        // Same number of segments, same shape: only the literal differs. Without
+        // the segment comparison the router would hand /posts/1 to /users/{id}.
+        $route = new Route('/users/{id}', HttpMethod::GET, handler: HandlerReference::action(self::class));
+        $router = new Router($route);
+
+        $result = $router->match(new ServerRequest('GET', '/posts/1'));
+
+        $this->assertSame(MatchStatus::NOT_FOUND, $result->status);
+    }
 }
