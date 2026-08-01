@@ -1,6 +1,16 @@
 {
   "name": "milpa/http",
   "description": "PSR-15-native routing and middleware contracts for the Milpa PHP framework.",
+  "keywords": [
+    "php",
+    "milpa",
+    "framework",
+    "http",
+    "routing",
+    "middleware",
+    "psr-15",
+    "psr-7"
+  ],
   "type": "library",
   "license": "Apache-2.0",
   "authors": [
@@ -11,7 +21,7 @@
   ],
   "require": {
     "php": ">=8.3",
-    "milpa/core": "^0.6",
+    "milpa/core": "^0.6.2 || ^0.7",
     "psr/http-message": "^2.0",
     "psr/http-server-handler": "^1.0",
     "psr/http-server-middleware": "^1.0"
