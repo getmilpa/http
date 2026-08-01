@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/getmilpa/http/compare/v0.1.5...v0.1.6) (2026-08-01)
+
+
+### Bug Fixes
+
+* **deps:** el pin de milpa/core acepta la linea 0.7 ([1403640](https://github.com/getmilpa/http/commit/1403640a161d3f1a8c32ada426ee750a162a1066))
+
 ## [0.1.5](https://github.com/getmilpa/http/compare/v0.1.4...v0.1.5) (2026-07-12)
 
 
