@@ -40,6 +40,22 @@ final class Router implements RouterInterface
     }
 
     /**
+     * The route table this router matches against, in the order it was given.
+     *
+     * Reverse routing needs to READ the table, and until this existed the table was reachable by
+     * nobody: the Kernel builds it, hands it to this constructor, and the only public method was
+     * {@see self::match()}. Additive and read-only — the array is already `readonly`, and a caller
+     * gets the same immutable value objects the matcher uses, so there is no second table to drift
+     * (greenhouse decisions/0215, F4).
+     *
+     * @return list<Route>
+     */
+    public function routes(): array
+    {
+        return $this->routes;
+    }
+
+    /**
      * Resolves the request to a typed result — always MATCHED, NOT_FOUND or
      * METHOD_NOT_ALLOWED, never null.
      */

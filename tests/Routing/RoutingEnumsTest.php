@@ -27,9 +27,17 @@ final class RoutingEnumsTest extends TestCase
         $this->assertSame('method_not_allowed', MatchStatus::METHOD_NOT_ALLOWED->value);
     }
 
-    public function testUrlReferenceTypeCases(): void
+    /**
+     * One case, and the count is the assertion.
+     *
+     * Three cases were removed because nothing in this framework holds the request context they need
+     * — a scheme, a host, a base path. Pinning the COUNT is what keeps a fourth from being declared
+     * again before something can render it: a reference type that cannot be rendered is a setting
+     * whose value is ignored (greenhouse decisions/0215).
+     */
+    public function testUrlReferenceTypeOffersOnlyWhatThisFrameworkCanRender(): void
     {
-        $this->assertCount(4, UrlReferenceType::cases());
-        $this->assertContains(UrlReferenceType::ABSOLUTE_PATH, UrlReferenceType::cases());
+        $this->assertCount(1, UrlReferenceType::cases());
+        $this->assertSame(UrlReferenceType::ABSOLUTE_PATH, UrlReferenceType::cases()[0]);
     }
 }
