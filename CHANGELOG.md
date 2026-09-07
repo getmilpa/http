@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.0](https://github.com/getmilpa/http/compare/v0.2.1...v0.3.0) (2026-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* Route::$host, Route::$priority and Route::$defaults are removed from the value object and its constructor. Nothing read them — measured across the framework's 37 packages, zero reads and no call site passed one. Callers using named arguments are unaffected; a positional caller now gets a TypeError rather than a silent misbinding of $middleware into a slot that no longer exists. See UPGRADING.md.
+
+### Features
+
+* release the Route field retirement as the breaking change it is ([#17](https://github.com/getmilpa/http/issues/17)) ([7069c14](https://github.com/getmilpa/http/commit/7069c145d7cc2b662aac0b498804de8826ba82f1))
+
 ## [0.1.6](https://github.com/getmilpa/http/compare/v0.1.5...v0.1.6) (2026-08-01)
 
 
