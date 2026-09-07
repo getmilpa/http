@@ -33,17 +33,19 @@ final readonly class Route
     public array $methods;
 
     /**
+     * `$host`, `$priority` and `$defaults` used to sit here and were removed: the matcher never read one
+     * of them, so they were three promises this package did not keep — and a declaration a reader can set
+     * and nothing obeys is worse than an absent feature, because it looks like a feature (greenhouse
+     * decisions/0213 row 5, decisions/0215). Whoever wants host matching or an explicit priority proposes
+     * them WITH the matcher that honours them.
+     *
      * @param HttpMethod|non-empty-list<HttpMethod> $methods    one verb, or a list of verbs
-     * @param array<string, string>                 $defaults   default values for optional path params
      * @param list<class-string>                    $middleware per-route PSR-15 middleware (kernel resolves via PSR-11)
      */
     public function __construct(
         public string $path,
         HttpMethod|array $methods = HttpMethod::GET,
         public ?string $name = null,
-        public ?string $host = null,
-        public int $priority = 0,
-        public array $defaults = [],
         public array $middleware = [],
         public ?HandlerReference $handler = null,
     ) {
@@ -53,13 +55,13 @@ final readonly class Route
     /** Bind the handler discovered by attribute reflection, returning a new instance. */
     public function withHandler(HandlerReference $handler): self
     {
-        return new self($this->path, $this->methods, $this->name, $this->host, $this->priority, $this->defaults, $this->middleware, $handler);
+        return new self($this->path, $this->methods, $this->name, $this->middleware, $handler);
     }
 
     /** Return a copy carrying the given route name. */
     public function withName(string $name): self
     {
-        return new self($this->path, $this->methods, $name, $this->host, $this->priority, $this->defaults, $this->middleware, $this->handler);
+        return new self($this->path, $this->methods, $name, $this->middleware, $this->handler);
     }
 
     /** Whether this route accepts the given HTTP method. */
