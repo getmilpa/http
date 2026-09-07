@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.4.0](https://github.com/getmilpa/http/compare/v0.3.0...v0.4.0) (2026-09-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* UrlReferenceType::ABSOLUTE_URL, NETWORK_PATH and RELATIVE_PATH are removed. Each needs a request context — scheme, host, base path — and nothing in this framework holds any of it: zero occurrences of a base path, SCRIPT_NAME, a request context or an app.url key across the routing, runtime and web packages. They were declared before anything could render them, so asking for an absolute URL silently returned a path. See UPGRADING.md.
+
+### Features
+
+* reverse routing over the table the router already holds ([#19](https://github.com/getmilpa/http/issues/19)) ([74481eb](https://github.com/getmilpa/http/commit/74481eba408bf641712f70979d5e7e7434615649))
+
 ## [0.3.0](https://github.com/getmilpa/http/compare/v0.2.1...v0.3.0) (2026-09-07)
 
 
