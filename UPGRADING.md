@@ -1,6 +1,6 @@
 # Upgrading
 
-## 0.10.0 — three `Route` fields the matcher never read are gone
+## 0.3.0 — three `Route` fields the matcher never read are gone
 
 `Route::$host`, `Route::$priority` and `Route::$defaults` were **removed** from the value object and its
 constructor.
