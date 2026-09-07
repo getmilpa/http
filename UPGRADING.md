@@ -19,3 +19,22 @@ your call now binds `$host` where `$middleware` is expected and fails with a `Ty
 this fails loudly rather than quietly binding your middleware into a slot that no longer exists.
 
 Named arguments (`middleware:`, `handler:`) are unaffected.
+
+## 0.4.0 — reverse routing arrives, and three reference types leave
+
+`UrlGeneratorInterface` finally has an implementation: `UrlGenerator`, built over `Router::routes()` — a new
+read-only accessor, because the table the Kernel assembles was reachable by nobody.
+
+**`UrlReferenceType::ABSOLUTE_URL`, `NETWORK_PATH` and `RELATIVE_PATH` were removed.** Each needs a request
+context — a scheme, a host, a base path, the path being rendered from — and nothing in this framework holds any
+of it: zero occurrences of a base path, a `SCRIPT_NAME`, a request context or an `app.url` key across the
+routing, runtime and web packages, and the skeleton mounts at `/`.
+
+They were declared before anything could render them, so an author could ask for an absolute URL and silently
+get a path. A declaration a reader can set and nothing obeys is worse than an absent feature, because it looks
+like one — the same rule that removed `Route::$host` in 0.3.0. Re-adding one is additive, the day someone
+proposes it with the context that renders it.
+
+**If you referenced one of the three:** there was nothing to render them, so any call site was already getting an
+absolute path. Drop the argument, or pass `UrlReferenceType::ABSOLUTE_PATH` explicitly.
+
