@@ -57,7 +57,7 @@ final readonly class Route
      *
      * The constructor stays the canon; this produces the same value with the verb said once, as the
      * method name, and the reference derived from the pair ({@see HandlerReference::of()}, greenhouse
-     * decisions/0386). Only the verbs with a consumer in the family exist here — `put`/`patch`/`delete`
+     * decisions/0388). Only the verbs with a consumer in the family exist here — `put`/`patch`/`delete`
      * arrive with their first caller.
      *
      * @param array<mixed> $handler
