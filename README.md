@@ -72,6 +72,26 @@ final class ShowUser
 }
 ```
 
+A provider that declares a table by hand says each verb once, names the handler the way a
+controller is named, and declares its door once for the group — the constructor stays the canon and
+these produce the very same `Route` values:
+
+```php
+use Milpa\Http\Routing\Route;
+
+return [
+    ...Route::behind($gate,
+        Route::get('/workspace/hub', [HubController::class, 'connect'], 'desktop.hub'),
+        Route::post('/workspace/settings', [MutationController::class, 'saveSettings'], 'desktop.settings.save'),
+    ),
+    Route::get('/assets/{file}', [AssetsController::class, 'component'], 'desktop.assets.component'),
+];
+```
+
+`HandlerReference::of()` accepts `[Controller::class, 'method']` and refuses anything else by shape, naming
+what it received. Only `get` and `post` exist, and only the pair is accepted: the other verbs and a bare
+`Controller::class` arrive with their first consumer.
+
 Match a PSR-7 request and branch on the typed status — no nulls, no exceptions for a miss:
 
 ```php

@@ -52,6 +52,58 @@ final readonly class Route
         $this->methods = \is_array($methods) ? $methods : [$methods];
     }
 
+    /**
+     * A `GET` route, its handler named the way a controller is named: `[Controller::class, 'method']`.
+     *
+     * The constructor stays the canon; this produces the same value with the verb said once, as the
+     * method name, and the reference derived from the pair ({@see HandlerReference::of()}, greenhouse
+     * decisions/0386). Only the verbs with a consumer in the family exist here — `put`/`patch`/`delete`
+     * arrive with their first caller.
+     *
+     * @param array<mixed> $handler
+     */
+    public static function get(string $path, array $handler, ?string $name = null): self
+    {
+        return new self($path, HttpMethod::GET, $name, [], HandlerReference::of($handler));
+    }
+
+    /**
+     * A `POST` route — the handler is named as in {@see self::get()}.
+     *
+     * @param array<mixed> $handler
+     */
+    public static function post(string $path, array $handler, ?string $name = null): self
+    {
+        return new self($path, HttpMethod::POST, $name, [], HandlerReference::of($handler));
+    }
+
+    /**
+     * The same routes, each behind one door: the given middleware is prepended — outermost, the position
+     * the constructor's list gives it — to whatever each route already carries, so a provider declares
+     * its gate once for the group instead of once per route. Keys are not preserved: the argument is a list.
+     *
+     * @param list<class-string> $middleware
+     *
+     * @return list<self>
+     */
+    public static function behind(array $middleware, self ...$routes): array
+    {
+        return array_map(
+            static fn (self $route): self => $route->withMiddleware([...$middleware, ...$route->middleware]),
+            $routes,
+        );
+    }
+
+    /**
+     * Return a copy carrying the given per-route middleware, outermost first.
+     *
+     * @param list<class-string> $middleware
+     */
+    public function withMiddleware(array $middleware): self
+    {
+        return new self($this->path, $this->methods, $this->name, $middleware, $this->handler);
+    }
+
     /** Bind the handler discovered by attribute reflection, returning a new instance. */
     public function withHandler(HandlerReference $handler): self
     {

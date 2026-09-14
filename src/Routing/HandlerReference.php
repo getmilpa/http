@@ -52,6 +52,33 @@ final readonly class HandlerReference implements \Stringable
         return new self($controller, $method);
     }
 
+    /**
+     * The reference behind `[Controller::class, 'method']` — the way a route names its handler.
+     *
+     * Anything else is refused here, by shape and naming what was received: a route whose handler cannot
+     * be resolved would otherwise surface at dispatch, as a 500 to whoever asked, instead of at
+     * declaration, to whoever wrote it. Only the pair is accepted: a bare `Controller::class` for a
+     * single-action handler arrives with its first consumer in the family (greenhouse decisions/0386).
+     *
+     * @param array<mixed> $handler
+     */
+    public static function of(array $handler): self
+    {
+        if (
+            \count($handler) === 2
+            && array_is_list($handler)
+            && \is_string($handler[0]) && $handler[0] !== ''
+            && \is_string($handler[1]) && $handler[1] !== ''
+        ) {
+            return new self($handler[0], $handler[1]);
+        }
+
+        throw new \InvalidArgumentException(
+            'A handler is named as [Controller::class, \'method\']; received '
+            . json_encode($handler, \JSON_INVALID_UTF8_SUBSTITUTE | \JSON_PARTIAL_OUTPUT_ON_ERROR) . '.',
+        );
+    }
+
     /** Render the reference as `Controller::method`. */
     public function __toString(): string
     {

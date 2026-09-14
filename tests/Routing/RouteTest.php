@@ -67,6 +67,63 @@ final class RouteTest extends TestCase
         $this->assertSame('x.route', $named->name);
     }
 
+    public function testTheVerbFactoriesProduceTheValueTheConstructorProduces(): void
+    {
+        $handler = new HandlerReference('App\\Settings', 'save');
+
+        $this->assertEquals(
+            new Route('/settings', HttpMethod::GET, 'settings.show', [], $handler),
+            Route::get('/settings', ['App\\Settings', 'save'], 'settings.show'),
+        );
+        $this->assertEquals(
+            new Route('/settings', HttpMethod::POST, 'settings.save', [], $handler),
+            Route::post('/settings', ['App\\Settings', 'save'], 'settings.save'),
+        );
+    }
+
+    public function testAVerbFactoryRouteIsUnnamedAndUngatedUnlessSaidSo(): void
+    {
+        $route = Route::post('/x', ['App\\Act', 'run']);
+
+        $this->assertNull($route->name);
+        $this->assertSame([], $route->middleware);
+        $this->assertSame([HttpMethod::POST], $route->methods);
+        $this->assertSame('App\\Act::run', (string) $route->handler);
+    }
+
+    public function testWithMiddlewareIsImmutable(): void
+    {
+        $route = Route::get('/x', ['App\\Act', 'run']);
+        $gated = $route->withMiddleware(['App\\Gate']);
+
+        $this->assertSame([], $route->middleware);
+        $this->assertSame(['App\\Gate'], $gated->middleware);
+        $this->assertSame($route->handler, $gated->handler);
+        $this->assertSame($route->methods, $gated->methods);
+    }
+
+    public function testBehindPrependsTheGateToEveryRouteAndKeepsWhatEachCarried(): void
+    {
+        $routes = Route::behind(
+            ['App\\Door'],
+            Route::get('/a', ['App\\A', 'index'], 'a'),
+            Route::post('/b', ['App\\B', 'save'], 'b')->withMiddleware(['App\\Own']),
+        );
+
+        $this->assertCount(2, $routes);
+        $this->assertSame(['App\\Door'], $routes[0]->middleware);
+        $this->assertSame(['App\\Door', 'App\\Own'], $routes[1]->middleware);
+        $this->assertSame('a', $routes[0]->name);
+        $this->assertSame('/b', $routes[1]->path);
+        $this->assertSame([HttpMethod::POST], $routes[1]->methods);
+        $this->assertSame('App\\B::save', (string) $routes[1]->handler);
+    }
+
+    public function testBehindWithNoRoutesIsAnEmptyList(): void
+    {
+        $this->assertSame([], Route::behind(['App\\Door']));
+    }
+
     public function testIsARepeatableMethodAttribute(): void
     {
         $attributes = (new \ReflectionClass(Route::class))->getAttributes(\Attribute::class);
