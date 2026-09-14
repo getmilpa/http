@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/getmilpa/http/compare/v0.4.0...v0.5.0) (2026-09-14)
+
+
+### Features
+
+* **routing:** declare a route by its verb, and its door once for a group ([#21](https://github.com/getmilpa/http/issues/21)) ([6d75604](https://github.com/getmilpa/http/commit/6d756044f7238a9feb1820d2a21f36e1b17eece1))
+
 ## [0.4.0](https://github.com/getmilpa/http/compare/v0.3.0...v0.4.0) (2026-09-07)
 
 
