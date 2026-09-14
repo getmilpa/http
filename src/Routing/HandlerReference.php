@@ -58,7 +58,7 @@ final readonly class HandlerReference implements \Stringable
      * Anything else is refused here, by shape and naming what was received: a route whose handler cannot
      * be resolved would otherwise surface at dispatch, as a 500 to whoever asked, instead of at
      * declaration, to whoever wrote it. Only the pair is accepted: a bare `Controller::class` for a
-     * single-action handler arrives with its first consumer in the family (greenhouse decisions/0386).
+     * single-action handler arrives with its first consumer in the family (greenhouse decisions/0388).
      *
      * @param array<mixed> $handler
      */
